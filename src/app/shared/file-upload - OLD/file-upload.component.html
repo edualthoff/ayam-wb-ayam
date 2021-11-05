@@ -1,0 +1,39 @@
+<section class="file-input-main">
+  <input type="file" class="file-input" [accept]="requiredFileType" (change)="onFileSelected($event)" #fileUpload>
+
+  <div class="file-upload">
+    <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+      <mat-icon>attach_file</mat-icon>
+    </button>
+
+    {{"Anexar arquivo."}}
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, 130px);">
+      <ng-container  *ngIf="filesInput.length != 0; else elseTemplate">
+        <ng-container *ngFor="let item of filesInput; let i=index;">
+            <ng-container *ngIf="item != null"
+              [ngTemplateOutlet]="nameTemp" [ngTemplateOutletContext]="{item: item, index: i}">
+            </ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #nameTemp let-item="item" let-index="index">
+    <div class="file-anexo align-vertical-centro file-anexo-active">
+      <div (click)="viewFile(index)">
+        {{item.name}}
+      </div>
+      <button mat-icon-button aria-label="Remover Anexo" (click)="removerFile(index)">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+    </div>
+</ng-template>
+
+<ng-template #elseTemplate>
+  <div class="file-anexo align-vertical-centro align-horizontal-centro file-anexo-color'" style="width: 130px;">
+    Sem anexos
+  </div>
+</ng-template>

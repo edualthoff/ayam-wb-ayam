@@ -1,0 +1,30 @@
+<div class="app-container-wrap"
+[ngClass]="{
+  'app-sidenav-collapsed': options.sidenavCollapsed && options.navPos !== 'top',
+  'app-navbar-side': options.navPos === 'side',
+  'app-navbar-top': options.navPos === 'top'
+  }" >
+
+  <mat-sidenav-container class="app-container" >
+    <mat-sidenav #sidenav class="app-sidenav"
+      [mode]="isOver ? 'over' : 'side'" opened="true"
+      (openedChange)="sidenavOpenedChange($event)"
+      [opened]="options.navPos === 'side' && options.sidenavOpened && !isOver" >
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="app-container-wrap">
+      <!-- <app-header
+        [showToggle]="!options.sidenavCollapsed && options.navPos !== 'top'"
+        (toggleSidenav)="sidenav.toggle()">
+      </app-header> -->
+      <app-header
+        [showToggle]="isOver"
+        (toggleSidenav)="sidenav.toggle()">
+      </app-header>
+      <div class="app-container app-padding ">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

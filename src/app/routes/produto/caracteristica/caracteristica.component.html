@@ -1,0 +1,45 @@
+<section>
+  <mat-card>
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <span>Caracteristicas Cristal</span>
+        <span fxFlex></span>
+        <span style="font-size: 13px;" fxHide.xs>
+          <mat-form-field appearance="standard">
+            <mat-label>Buscar</mat-label>
+            <input matInput #inputTable>
+            <mat-icon matSuffix class="fas fa-search"></mat-icon>
+          </mat-form-field>
+          <button mat-icon-button class="favorite-icon" aria-label="Adicionar um cristal" [routerLink]="'./adicionar'">
+            <mat-icon class="far fa-plus-square"></mat-icon>
+          </button>
+        </span>
+      </mat-toolbar-row>
+
+
+      <mat-toolbar-row fxShow.xs fxHide>
+        <span style="font-size: 12px;">
+          <mat-form-field appearance="standard">
+            <mat-label>Buscar</mat-label>
+            <input matInput #inputTable>
+            <mat-icon matSuffix class="fas fa-search"></mat-icon>
+          </mat-form-field>
+          <button mat-icon-button class="favorite-icon" aria-label="Adicionar um cristal" [routerLink]="'./adicionar'">
+            <mat-icon class="far fa-plus-square"></mat-icon>
+          </button>
+        </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <!-- Componente que gera a Tabela -->
+    <app-table-pagination #TablePag
+      desabilitarPreview="true"
+      [displayedColumns]="displayedColumns"
+      [dataSource]="dataSource"
+      [editarExcluir]="true"
+      [inputTable]="inputTable"
+      (editar)="eventEditar($event)">
+    </app-table-pagination>
+  </mat-card>
+
+</section>

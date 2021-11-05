@@ -1,0 +1,23 @@
+@use 'sass:map';
+@use '~@angular/material' as mat;
+
+@mixin theme($theme) {
+  $is-dark-theme: map.get($theme, is-dark);
+  $primary: map.get($theme, primary);
+  $accent: map.get($theme, accent);
+  $background: map.get($theme, background);
+  $foreground: map.get($theme, foreground);
+
+
+  .file-upload {
+    & .file-anexo-color {
+      color: mat.get-color-from-palette($foreground, hint-text);
+    }
+    & .file-anexo-active {
+      border: none !important;
+      background-color: mat.get-color-from-palette($background, hover);
+      color: mat.get-color-from-palette($foreground, hint-text);
+    }
+  }
+
+}

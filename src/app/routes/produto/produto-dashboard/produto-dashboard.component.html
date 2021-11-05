@@ -1,0 +1,44 @@
+<section>
+  <mat-card>
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <span>Cristal</span>
+        <span fxFlex></span>
+        <span style="font-size: 13px;" fxHide.xs>
+          <mat-form-field appearance="standard">
+            <mat-label>Buscar cristal</mat-label>
+            <input matInput #inputTable>
+            <mat-icon matSuffix class="fas fa-search"></mat-icon>
+          </mat-form-field>
+          <button mat-icon-button class="favorite-icon" aria-label="Adicionar um cristal" [routerLink]="'./adicionar'">
+            <mat-icon class="far fa-plus-square"></mat-icon>
+          </button>
+        </span>
+      </mat-toolbar-row>
+
+
+      <mat-toolbar-row fxShow.xs fxHide>
+        <span style="font-size: 12px;">
+          <mat-form-field appearance="standard">
+            <mat-label>Buscar cristal</mat-label>
+            <input matInput #inputTable>
+            <mat-icon matSuffix class="fas fa-search"></mat-icon>
+          </mat-form-field>
+          <button mat-icon-button class="favorite-icon" aria-label="Adicionar um cristal" [routerLink]="'./adicionar'">
+            <mat-icon class="far fa-plus-square"></mat-icon>
+          </button>
+        </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <app-table-pagination #TablePag
+      [displayedColumns]="displayedColumns"
+      [dataSource]="dataSource"
+      [editarExcluir]="true"
+      (editar)="eventEditar($event)"
+      [inputTable]="inputTable"
+      >
+    </app-table-pagination>
+  </mat-card>
+
+</section>

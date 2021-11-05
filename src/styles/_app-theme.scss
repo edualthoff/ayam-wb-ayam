@@ -1,0 +1,19 @@
+@use '~@angular/material' as mat;
+
+@use '../app/theme/sidemenu/sidemenu-theme';
+@use '../app/theme/sidebar/sidebar-theme';
+@use '../app/shared/file-upload/file-upload-theme';
+@use '../app/theme/style/mat/warn';
+
+@include mat.core();
+
+// Styles for the app that are based on the current theme.
+@mixin theme($theme) {
+  @include mat.all-component-themes($theme);
+
+  @include sidemenu-theme.theme($theme);
+  @include sidebar-theme.theme($theme);
+  @include file-upload-theme.theme($theme);
+  @include warn.theme($theme);
+
+}

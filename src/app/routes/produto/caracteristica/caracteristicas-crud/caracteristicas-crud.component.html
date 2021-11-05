@@ -1,0 +1,59 @@
+<section class="align-horizontal-centro">
+  <mat-card fxFlex.gt-sm="800px" fxFlex.lt-md="100">
+    <mat-toolbar>
+      <span>{{titulo}}</span>
+    </mat-toolbar>
+
+    <mat-card-content style="padding-top: 16px;">
+      <form [formGroup]="reactiveForm">
+        <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="start start">
+          <div fxlayout="column" fxLayoutAlign="start start" fxFlex="100">
+            <mat-form-field appearance="legacy" style="width: 100%;">
+              <mat-label>Ïnforme o nome</mat-label>
+              <input matInput placeholder="Ïnforme o nome do cristal" formControlName="nome" required>
+            </mat-form-field>
+          </div>
+          <div fxLayout='row wrap' fxLayoutAlign="start center"  fxFlex="100" fxFlex.lt-sm="100">
+            <span fxLayout="column" fxFlex="40" fxFlex.xs="100">
+             <!-- Selecionar o tipo de caracterisica-->
+            <mat-form-field appearance="legacy" >
+              <mat-label>Selecione o tipo</mat-label>
+              <mat-select required formControlName="tipo" required>
+                <mat-option value="vibracao">Vibracao</mat-option>
+                <mat-option value="elemento">Elemento</mat-option>
+              </mat-select>
+            </mat-form-field>
+            </span>
+            <span fxLayout="column" fxFlex="50" fxFlex.xs="100" id="app-status-radio" fxFlexOffset.gt-xs="20px">
+            <!-- Status -->
+            <mat-label style="margin-right: 10px;">Status: </mat-label>
+            <mat-radio-group color="primary" aria-label="Status?"
+              [formControlName]="'status'">
+              <mat-radio-button aria-label="Publicado" [value]="true">Publicado</mat-radio-button>
+              <mat-radio-button aria-label="Em Revisão" [value]="false">Em Revisão</mat-radio-button>
+            </mat-radio-group>
+            </span>
+          </div>
+          <!-- Selecionar icon -->
+          <div fxlayout="column" fxLayoutAlign="start start" fxFlex="40" fxFlex.lt-sm="100" fxFlex.lt-md="60">
+            <mat-form-field appearance="legacy" style="width: 100%;">
+              <mat-label>Selecione um icon</mat-label>
+              <input matInput placeholder="Selecione um icon" formControlName="fontIcon" [readonly]="true"
+              [value]="reactiveForm.get(['fontIcon']).value.name">
+              <button matSuffix mat-icon-button aria-label="Adicionar icon" (click)="buttonAddIcon()">
+                <mat-icon style="font-size: 22px;">note_add_outline</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <app-editor-texto class="width-100-esticar" [formControlName]="'contentDescricao'"></app-editor-texto>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions style="margin-left: 0;">
+      <button style="min-width: 130px;" mat-stroked-button (click)="buttonSaveAndUpdate()"
+        [disabled]="reactiveForm.status !== 'VALID'" cdkFocusInitial>
+        {{buttonName}}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</section>

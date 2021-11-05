@@ -1,0 +1,40 @@
+
+.file-input {
+  display: none;
+
+}
+.file-upload {
+  & .upload-btn {
+    margin-right: 10px;
+  }
+  & .file-anexo {
+    padding: 8px;
+    border-style: dashed;
+    border-radius: 6px;
+    border-width: thin;
+    margin: 10px 10px 0 0;
+    max-height: 43px;
+    > div {
+      width: 115px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    & button {
+      height: 24px;
+      width: 24px;
+      display: flex;
+      align-items: center;
+      margin-left: 5px;
+    }
+    & mat-icon {
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+}
+
+.file-input-main {
+  padding: 16px;
+
+}

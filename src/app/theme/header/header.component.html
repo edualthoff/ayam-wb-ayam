@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button  *ngIf="showToggle" (click)="toggleSidenav.emit()"
+  aria-label="Example icon-button with menu icon" >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Ayam administrativo</span>
+  <span fxFlex></span>
+  <button mat-icon-button aria-label="Sair do sistema">
+    <mat-icon class="icon-20">exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>

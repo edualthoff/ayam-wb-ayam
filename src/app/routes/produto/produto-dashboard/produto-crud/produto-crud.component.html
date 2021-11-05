@@ -1,0 +1,63 @@
+<section class="align-horizontal-centro">
+  <mat-card fxFlex.gt-sm="800px" fxFlex.lt-md="100">
+    <mat-toolbar>
+      <span>{{titulo}}</span>
+    </mat-toolbar>
+
+    <mat-card-content style="padding-top: 16px;">
+      <form [formGroup]="reactiveForm">
+        <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="start start">
+          <div style="display: block; width: 100%;">
+            <mat-form-field appearance="legacy" style="width: 100%;">
+              <mat-label>Ïnforme o nome do cristal</mat-label>
+              <input matInput placeholder="Ïnforme o nome do cristal" [formControlName]="'nome'">
+            </mat-form-field>
+            <mat-form-field appearance="legacy" style="width: 100%;">
+              <mat-label>Ïnforme o nome curto</mat-label>
+              <input matInput placeholder="Ïnforme o nome curto" [formControlName]="'nomeCurto'">
+            </mat-form-field>
+          </div>
+          <div fxlayout="column" fxLayout.lt-sm="row wrap" fxLayoutAlign="start start" fxFlex="100">
+            <mat-form-field appearance="legacy" fxFlex="40" fxFlex.lt-sm="100">
+              <!-- Mountar a lista de Vibração -->
+              <mat-label>Selecione Vibração</mat-label>
+              <mat-select multiple msInfiniteScroll (infiniteScroll)="mountlistCaracteristica('vibracao')"
+                [formControlName]="'selectTipoVibracao'" [compareWith]="compareFnVibracao" [complete]="
+                caracteristicaService.getSetPage('vibracao')?.pageNumber ===
+                caracteristicaService.getSetPage('vibracao')?.totalPages">
+                <mat-option *ngFor="let item of caracteristicaService?.getTipo('vibracao'); index as i" [value]="item">
+                  {{item.nome}}
+                </mat-option>
+              </mat-select>
+              <app-load-spinner></app-load-spinner>
+            </mat-form-field>
+            <span fxFlex="20" fxHide.lt-sm></span>
+            <mat-form-field appearance="legacy" fxFlex="40" fxFlex.lt-sm="100">
+              <!-- Mountar a lista de Elemento -->
+              <mat-label>Seleciona Elemento</mat-label>
+              <mat-select multiple msInfiniteScroll (infiniteScroll)="mountlistCaracteristica('elemento')"
+                [formControlName]="'selectTipoElemento'" [compareWith]="compareFnElemento" [complete]="
+                caracteristicaService.getSetPage('elemento')?.pageNumber ===
+                caracteristicaService.getSetPage('elemento')?.totalPages">
+                <mat-option *ngFor="let item of caracteristicaService?.getTipo('elemento'); index as i" [value]="item">
+                  {{item.nome}}
+                </mat-option>
+              </mat-select>
+              <app-load-spinner></app-load-spinner>
+            </mat-form-field>
+          </div>
+          <div fxlayout="column" fxFlex="100">
+            <app-file-upload [formControlName]="'uploadFile'"></app-file-upload>
+          </div>
+          <app-editor-texto class="width-100-esticar" appValidEditorTexto [formControlName]="'contentDescricao'"></app-editor-texto>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions style="margin-left: 0;">
+      <button style="min-width: 130px;" mat-stroked-button (click)="buttonSalvar()"
+        [disabled]="reactiveForm.status !== 'VALID'" cdkFocusInitial>
+        {{buttonName}}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</section>

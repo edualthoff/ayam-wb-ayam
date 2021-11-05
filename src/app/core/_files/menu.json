@@ -1,0 +1,46 @@
+{
+  "menu": [
+    {
+      "route": "dashboard",
+      "name": "dashboard",
+      "type": "link",
+      "icon": "dashboard"
+    },
+    {
+      "route": "produto",
+      "name": "produto",
+      "type": "sub",
+      "icon": "far fa-gem",
+      "children": [
+        {
+          "route": "cristal",
+          "name": "cristal",
+          "type": "link"
+        },
+        {
+          "route": "caracteristica",
+          "name": "caracateristica",
+          "type": "link"
+        }
+      ],
+      "permissions": {
+        "only": [
+          "ADMIN",
+          "MANAGER"
+        ]
+      }
+    },
+    {
+      "route": "informativo",
+      "name": "Informativo",
+      "type": "link",
+      "icon": "far fa-newspaper",
+      "permissions": {
+        "only": [
+          "ADMIN",
+          "MANAGER"
+        ]
+      }
+    }
+  ]
+}

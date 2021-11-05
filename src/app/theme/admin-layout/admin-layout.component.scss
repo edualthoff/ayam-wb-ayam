@@ -1,0 +1,73 @@
+@use '~@angular/material' as mat;
+@use '../style/variables';
+@use '../style/transitions';
+
+.app-container-wrap, .app-container {
+  height: 100%;
+}
+
+.app-sidenav {
+  position: absolute;
+  overflow-x: hidden;
+  transition: transitions.swift-ease-out(width); // Only set width property
+
+  @include mat.elevation(2);
+
+  &.mat-drawer-side {
+    border-width: 0;
+  }
+}
+
+// Layout control
+.app-sidenav-collapsed {
+  .app-sidenav {
+    width: variables.$sidenav-collapsed-width;
+
+    .menu-name,
+    .menu-label,
+    .menu-badge,
+    .menu-caret,
+    .app-user-panel-name,
+    .app-user-panel-email,
+    .app-user-panel-icons,
+    .app-sidemenu-sub {
+      display: none;
+    }
+
+    .app-user-panel-avatar {
+      transform: scale(.5);
+    }
+
+    &:hover {
+      width: variables.$sidenav-width;
+
+      .menu-name,
+      .menu-label,
+      .menu-badge,
+      .menu-caret,
+      .app-user-panel-name,
+      .app-user-panel-email,
+      .app-user-panel-icons,
+      .app-sidemenu-sub {
+        display: inherit;
+      }
+
+      .app-user-panel-avatar {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+
+// Layout control - Sidbnave - menu de navegacao
+.app-sidenav-collapsed {
+  .app-content-wrap {
+    margin-left: variables.$sidenav-collapsed-width !important;
+  }
+}
+
+
+
+
+

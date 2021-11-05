@@ -1,0 +1,25 @@
+.app-icon-all > svg {
+  width: 35px;
+  height: 35px;
+  margin: 5px;
+}
+
+mat-tab-group mat-tab-header {
+  margin-bottom: 15px;
+}
+
+.mat-checkbox-inner-container {
+  position: absolute !important;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.app-list-icon-upload {
+  position: relative;
+  app-file-upload ~ button {
+    position: absolute;
+    top: 51%;
+    left: 150px;
+    transform: rotate(317deg);
+  }
+}

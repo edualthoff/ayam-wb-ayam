@@ -1,0 +1,46 @@
+<div>
+  <h1 mat-dialog-title>Lista de icons</h1>
+</div>
+<mat-divider></mat-divider>
+<div fxLayout="column">
+  <div fxLayout="row">
+    <span>
+      <mat-dialog-content>
+        <div fxLayout="column">
+          <span>
+            <h3>Selecione um icon na lista ou envie um.
+              <br /> Utilize o botão há baixo para enviar
+              <br /><b>Formatos permitido SVG</b>
+            </h3>
+          </span>
+          <!-- Anexa e envia o icon pro BackEnd-->
+          <div fxlayout="column" fxFlex="100" class="app-list-icon-upload">
+            <app-file-upload requiredFileType="image/svg+xml" [(fileValue)]="filesInput"></app-file-upload>
+            <button mat-icon-button (click)="enviarIcon(filesInput)"><mat-icon>send</mat-icon></button>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+        <div fxLayout="column" style="position: relative; min-height: 200px;">
+          <!-- Monta a lista de icon -->
+          <mat-tab-group>
+            <mat-tab *ngFor="let tab of nameIcon" [label]="tab | titlecase">
+              <ng-container *ngFor="let item of loadFile.iconL$ | async; let i = index ">
+                <mat-checkbox [checked]="selected === i" (change)="selected = i" (click)="selectIcon(item)">
+                  <span [innerHTML]="item.other | safeHtml" class="app-icon-all" ></span>
+                </mat-checkbox>
+              </ng-container>
+            </mat-tab>
+          </mat-tab-group>
+          <ng-container *ngIf="(loadFile.loadSpinner.loading$ | async) === true" >
+            <app-load-spinner></app-load-spinner>
+          </ng-container>
+        </div>
+      </mat-dialog-content>
+    </span>
+  </div>
+  <div class="width-100-esticar">
+    <mat-dialog-actions>
+      <button mat-raised-button color="primary" [mat-dialog-close]="selectItem">Prosseguir</button>
+    </mat-dialog-actions>
+  </div>
+</div>

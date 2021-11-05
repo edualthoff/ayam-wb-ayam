@@ -1,0 +1,63 @@
+<!--class="mat-elevation-z8"-->
+<div class="table-config">
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <table #table mat-table [dataSource]="dataSource" matSort [matSortActive]="sortVariableName" matSortDirection="asc" matSortDisableClear>
+    <!-- Position for Column -->
+    <ng-container matColumnDef="{{item.variableName}}" *ngFor="let item of displayedColumns; let i=index">
+
+      <ng-container *ngIf="item.variableName == sortVariableName; else elseTemplate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> {{item.name | titlecase}} </th>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <th mat-header-cell *matHeaderCellDef> {{(item.name) | titlecase}} </th>
+      </ng-template>
+
+      <td mat-cell *matCellDef="let element; let i = index;">
+        <ng-container>
+          <div style="display: flex;">
+            <ng-container *ngIf="item.name !== '#'; else elseTemplate">
+              <div class="mobile-label mat-header-cell">{{item.name | titlecase }}: </div>
+              <div>{{(getValueVarNameNews(element, item.variableName)) | value:item.nameConversion | titlecase }} </div>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <div class="mobile-label mat-header-cell"> #: </div>
+              <div>{{i+1}} </div>
+            </ng-template>
+          </div>
+        </ng-container>
+      </td>
+
+      <!-- Button para Editar Itens da tabela Column -->
+      <ng-container matColumnDef="editar" *ngIf="editarExcluir">
+        <th mat-header-cell *matHeaderCellDef>Editar </th>
+        <td mat-cell *matCellDef="let element; let index">
+          <div style="display: flex; height: 24px; align-items: baseline;">
+            <div class="mobile-label mat-header-cell">Editar: </div>
+            <!-- Button Preview -->
+            <button mat-icon-button color="secondary" *ngIf="!desabilitarPreview">
+              <mat-icon class="sidenav-icon" (click)="buttonPreview(element)">preview</mat-icon>
+            </button>
+            <!-- Button Editar -->
+            <button mat-icon-button color="secondary">
+              <mat-icon class="sidenav-icon" (click)="buttonEditar(element)">edit</mat-icon>
+            </button>
+            <!-- Button Excluir -->
+            <button mat-icon-button color="warn">
+              <mat-icon class="sidenav-icon" (click)="buttonExlcuir(element.id)">delete_forever</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedVariable"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedVariable; let i = index;"></tr>
+  </table>
+
+  <mat-paginator *ngIf="!paginationDesabled" [length]="dataSource.totalElements$" [pageSize]="10" [pageSizeOptions]="[5,10, 20]" showFirstLastButtons
+    aria-label="Selecione a pagina">
+  </mat-paginator>
+</div>

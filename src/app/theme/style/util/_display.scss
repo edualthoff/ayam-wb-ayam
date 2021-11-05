@@ -1,0 +1,30 @@
+
+.app-padding {
+  padding: 10px;
+}
+
+.app-margin-24 {
+  margin: 24px;
+}
+
+.app-margin-12 {
+  margin: 12px;
+}
+
+
+.align-horizontal-centro {
+  display: flex;
+  justify-content: center;
+}
+
+.align-vertical-centro {
+  display: flex;
+  align-items: center;
+}
+
+.width-100-esticar {
+  width: 100%;
+  width: -moz-available;          /* WebKit-based browsers will ignore this. */
+  width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+  width: fill-available;
+}

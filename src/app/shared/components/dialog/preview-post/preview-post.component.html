@@ -1,0 +1,31 @@
+<mat-button-toggle-group class="width-100-esticar button-toggle" appearance="legacy" [value]="data.viewport"
+  (change)="adjustView($event.value)" name="Selecionar o tipo de visualização"
+  aria-label="Selecionar o tipo de visualização">
+  <ng-container *ngFor="let item of viewP">
+    <mat-button-toggle [value]="item">{{item | titlecase}}</mat-button-toggle>
+  </ng-container>
+</mat-button-toggle-group>
+
+<div fxLayout="column" >
+  <div fxLayout="row" >
+    <span>
+      <mat-dialog-content  [ngStyle]="{'height' : (viewPortInfo.height - heighitFix)+'px', 'background-color' : valueColor}">
+       <ng-container #previewpost></ng-container>
+      </mat-dialog-content>
+    </span>
+  </div>
+  <div class="width-100-esticar" style="margin-left: -24px; margin-right: -24px;">
+      <mat-divider class="mat-elevation-z2"></mat-divider>
+        <mat-dialog-actions>
+          <button style="margin-left: 25px;" mat-raised-button color="primary" [mat-dialog-close]="true">
+            Fechar Preview
+          </button>
+          <span style="flex: 1 1 auto;"></span>
+          <mat-form-field class="example-form-field" appearance="outline">
+            <mat-label>Cor de Fundo</mat-label>
+            <input  style="width: 35px; padding-bottom: 3px; padding-bottom: 3px;" matInput
+            type="color"  [(ngModel)]="valueColor" >
+          </mat-form-field>
+        </mat-dialog-actions>
+  </div>
+</div>

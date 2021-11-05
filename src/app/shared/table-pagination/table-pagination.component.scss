@@ -1,0 +1,52 @@
+table {
+  width: 100%;
+}
+
+.table-config {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 100px;
+  word-break: break-all;
+  //white-space: nowrap;
+  width: 100%;
+  overflow-y: auto;
+  & button {
+    height: 25px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    & mat-icon {
+      font-size: 20px;
+      text-align: center;
+    }
+  }
+}
+.mobile-label {
+  display: none;
+}
+
+@media (max-width: 750px) {
+  .mat-header-row {
+    display: none;
+  }
+  table {
+    border-collapse: collapse;
+    & tr {
+      border-bottom: 1pt solid #0000001f;
+    }
+  }
+  .mobile-label {
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .mat-row .mat-cell {
+    max-width: 100%;
+    display: block;
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+  }
+}

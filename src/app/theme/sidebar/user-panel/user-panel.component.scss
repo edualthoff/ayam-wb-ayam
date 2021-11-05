@@ -1,0 +1,38 @@
+@use '../../style/transitions';
+
+.app-user-panel {
+  padding: 16px 0;
+}
+
+// Set default width and height can avoid flashing before avatar image loaded.
+.app-user-panel-avatar {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 8px;
+  border-radius: 50rem;
+  transition: transitions.swift-ease-out(transform);
+}
+
+.app-user-panel-name,
+.app-user-panel-email {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-weight: normal;
+}
+
+.app-user-panel-name,
+.app-user-panel-email,
+.app-user-panel-icons {
+  opacity: 1;
+  transition: transitions.swift-ease-out(opacity);
+}
+
+.app-user-panel-icons {
+  white-space: nowrap;
+
+  .mat-icon-button {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+  }
+}

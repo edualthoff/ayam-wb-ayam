@@ -1,0 +1,18 @@
+ <section *ngIf="(info$ | async) as info; else loading" >
+   <div class="align-horizontal-centro app-margin-12" >
+    <img class="imagem-principal" alt="" [srcset]="info?.uploadFile[0]!.fileUrl" width="auto" height="200">
+   </div>
+   <div class="align-horizontal-centro">
+     <h2>
+      {{info.titulo }}
+     </h2>
+  </div >
+  <div >
+    <section [innerHtml]="info.corpoMensagem | safeHtml">
+    </section>
+  </div>
+</section>
+
+<ng-template #loading >
+  <app-load-spinner diameter="50" [show]="!info$"> </app-load-spinner>
+</ng-template>

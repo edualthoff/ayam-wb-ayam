@@ -1,0 +1,33 @@
+[id=previewPost] {
+  position: relative;
+  padding-top: 40px;
+  .mat-dialog-content {
+    max-height: 100% !important;
+    padding-bottom: 0px;
+  }
+  .mat-dialog-actions {
+    padding: 0px;
+  }
+}
+
+.button-toggle {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+
+}
+
+.example-form-field {
+  height: 39px;
+  width: 90px;
+  font-size: 14px;
+  margin-right: 25px;
+  display: grid;
+  .mat-form-field-wrapper {
+    width: 90px;
+  }
+  .mat-form-field-infix  {
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+}

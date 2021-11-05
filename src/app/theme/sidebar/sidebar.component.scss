@@ -1,0 +1,9 @@
+
+@use '../style/variables';
+
+.app-sidebar-main {
+  height: calc(100% - #{variables.$toolbar-height-desktop});
+  overflow: auto;
+}
+
+

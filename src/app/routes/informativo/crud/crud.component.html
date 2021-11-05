@@ -1,0 +1,75 @@
+<section class="align-horizontal-centro">
+    <mat-card fxFlex.gt-sm="800px" fxFlex.lt-md="100">
+      <mat-toolbar>
+        <span>{{titulo}}</span>
+      </mat-toolbar>
+
+      <mat-card-content style="padding-top: 16px;">
+        <form [formGroup]="reactiveForm" fxFlex="100">
+          <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="start start">
+            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100">
+              <mat-form-field appearance="legacy" style="width: 100%;">
+                <mat-label>Ïnforme o titulo</mat-label>
+                <input matInput placeholder="Ïnforme o nome do cristal" formControlName="titulo" required>
+              </mat-form-field>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100">
+              <mat-form-field appearance="legacy" style="width: 100%;">
+                <mat-label>Ïnforme um subtítulo</mat-label>
+                <input matInput placeholder="Ïnforme o nome do cristal" formControlName="subTitulo">
+              </mat-form-field>
+            </div>
+            <div fxLayout='row wrap' fxLayoutAlign="start center"  fxFlex="100" fxFlex.lt-sm="100">
+              <span fxLayout="column" fxFlex="50" fxFlex.xs="100" style="margin-bottom: 15px;">
+              <!-- Destacar Informativo -->
+              <mat-label style="margin-right: 10px;">Destacar Informativo: </mat-label>
+              <mat-radio-group color="primary" aria-label="Gostaria de destacar o informativo?"
+                [formControlName]="'destacar'">
+                <mat-radio-button aria-label="Sim" [value]="true">Sim</mat-radio-button>
+                <mat-radio-button aria-label="Não" [value]="false">Não</mat-radio-button>
+              </mat-radio-group>
+              </span>
+              <span fxLayout="column" fxFlex="50"  fxFlex.xs="100" style="margin-bottom: 15px;">
+              <!-- Status do informativo -->
+              <mat-label style="margin-right: 10px;">Status do Informativo: </mat-label>
+              <mat-radio-group color="primary" aria-label="Status do informativo?"
+                [formControlName]="'status'">
+                <mat-radio-button aria-label="Publicado" [value]="true">Publicado</mat-radio-button>
+                <mat-radio-button aria-label="Em Revisão" [value]="false">Em Revisão</mat-radio-button>
+              </mat-radio-group>
+              </span>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex="100">
+              <mat-form-field appearance="legacy" fxFlex="40" fxFlex.lt-sm="100" fxFlex.lt-md="60">
+                <mat-label>Selecione o tipo</mat-label>
+                <mat-select required formControlName="tipo" required>
+                  <mat-option value="dica">Dica</mat-option>
+                  <mat-option value="noticia">Notícia</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="100">
+              <app-file-upload [formControlName]="'uploadFile'"></app-file-upload>
+            </div>
+            <!-- Texto curto  -->
+            <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex="100">
+              <mat-form-field appearance="fill" fxFlex="100" style="padding-bottom: 16px;">
+                <mat-label>Texto curto</mat-label>
+                <textarea matInput matTextareaAutosize="true" placeholder="Texto curto..." maxlength="512"
+                  [formControlName]="'textoCurto'"></textarea>
+                <mat-hint align="start">Quantidade máxima de caracteres</mat-hint>
+                <mat-hint align="end">{{reactiveForm.get(['textoCurto'])?.value.length}} / 512</mat-hint>
+              </mat-form-field>
+            </div>
+            <app-editor-texto appValidEditorTexto class="width-100-esticar" [formControlName]="'corpoMensagem'"></app-editor-texto>
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-card-actions style="margin-left: 0;">
+        <button style="min-width: 130px;" mat-stroked-button (click)="buttonSaveAndUpdate()"
+          [disabled]="reactiveForm.status !== 'VALID'" cdkFocusInitial>
+          {{buttonName}}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+</section>
