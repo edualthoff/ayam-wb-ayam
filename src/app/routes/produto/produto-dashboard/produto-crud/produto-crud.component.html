@@ -46,6 +46,15 @@
               <app-load-spinner></app-load-spinner>
             </mat-form-field>
           </div>
+          <div id="app-status-radio">
+              <!-- Status -->
+              <mat-label style="margin-right: 10px;">Status: </mat-label>
+              <mat-radio-group color="primary" aria-label="Status?"
+                [formControlName]="'status'">
+                <mat-radio-button aria-label="Publicado" [value]="true">Publicado</mat-radio-button>
+                <mat-radio-button aria-label="Em Revisão" [value]="false">Em Revisão</mat-radio-button>
+              </mat-radio-group>
+          </div>
           <div fxlayout="column" fxFlex="100">
             <app-file-upload [formControlName]="'uploadFile'"></app-file-upload>
           </div>

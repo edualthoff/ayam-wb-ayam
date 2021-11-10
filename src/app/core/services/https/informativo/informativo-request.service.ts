@@ -9,21 +9,22 @@ import { Observable } from 'rxjs';
 })
 export class InformativoRequestService {
 
+  private URIDESTINO = 'informativo';
+
   constructor(protected http: HttpClient) {  }
 
   save(caract: InformativoDto): any {
-    return this.http.post('/informativo/', caract);
+    return this.http.post(`/adm/${this.URIDESTINO}`, caract);
   }
 
   saveAndFile(informativo: InformativoDto, file: File[]): Observable<any> {
     const myheader = new HttpHeaders().set('Accept', 'application/json');
     const f = new FormData();
-    console.log("save "+ file.length);
     f.append('informativo', JSON.stringify(informativo));
     file.forEach( (x: File) => {
       f.append('file', x);
     });
-    return this.http.post('/informativo', f, {
+    return this.http.post(`/adm/${this.URIDESTINO}`, f, {
       headers: myheader,
       reportProgress: true,
       responseType: 'json'
@@ -36,7 +37,7 @@ export class InformativoRequestService {
     file.forEach( (x: File) => {
         f.append('file', x);
     });
-    return this.http.put('/informativo', f, {
+    return this.http.put(`/adm/${this.URIDESTINO}`, f, {
       headers: myheader,
       reportProgress: true,
       responseType: 'json'
@@ -44,7 +45,7 @@ export class InformativoRequestService {
   }
 
   update(caract: InformativoDto): any {
-    return this.http.put('/informativo', caract);
+    return this.http.put(`/adm/${this.URIDESTINO}`, caract);
   }
 
   findParameterNameOrAll(nome = '', sort = 'asc', page = 0, size = 10, tipo = '', statusValue? ):
@@ -59,14 +60,14 @@ export class InformativoRequestService {
     if (statusValue != null) {
       params2.set('status', statusValue);
     }
-    return this.http.get<PaginationResponse<InformativoDto>>('/informativo/adm/autosuggest', { params: params2 });
+    return this.http.get<PaginationResponse<InformativoDto>>(`/adm/${this.URIDESTINO}/autosuggest`, { params: params2 });
   }
 
   findById(infoId: number): Observable<InformativoDto> {
-    return this.http.get<InformativoDto>(`/informativo/${infoId}`);
+    return this.http.get<InformativoDto>(`/${this.URIDESTINO}/${infoId}`);
   }
 
   delete(index: number): any {
-    return this.http.delete(`/informativo/${index}`);
+    return this.http.delete(`/${this.URIDESTINO}/${index}`);
   }
 }

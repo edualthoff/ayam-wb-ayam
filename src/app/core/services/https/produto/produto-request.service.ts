@@ -9,10 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class ProdutoRequestService {
 
+  private URIDESTINO = 'produto';
+
   constructor(protected http: HttpClient) {  }
 
   save(produtoDto: ProdutoDto): any {
-    return this.http.post('/produto', produtoDto);
+    return this.http.post(`/adm/${this.URIDESTINO}`, produtoDto);
   }
 
   saveAndFile(produtoDto: ProdutoDto, file: File[]): Observable<any> {
@@ -22,7 +24,7 @@ export class ProdutoRequestService {
     file.forEach( (x: File) => {
       f.append('file', x);
     });
-    return this.http.post('/produto', f, {
+    return this.http.post(`/adm/${this.URIDESTINO}`, f, {
       headers: myheader,
       reportProgress: true,
       responseType: 'json'
@@ -36,7 +38,7 @@ export class ProdutoRequestService {
     file.forEach( (x: File) => {
         f.append('file', x);
     });
-    return this.http.put('/produto', f, {
+    return this.http.put(`/adm/${this.URIDESTINO}`, f, {
       headers: myheader,
       reportProgress: true,
       responseType: 'json'
@@ -45,7 +47,7 @@ export class ProdutoRequestService {
 
   getAllPage(page = 0, size = 10): Observable<PaginationResponse<ProdutoDto>>  {
     const params = { page: page.toString(), size: size.toString() };
-    return this.http.get<PaginationResponse<ProdutoDto>>('/produto/todos', { params });
+    return this.http.get<PaginationResponse<ProdutoDto>>(`/adm/${this.URIDESTINO}/todos`, { params });
   }
 
   findParameterNameOrAll(nome = '', page = 0, size = 10,  sort = 'asc'): Observable<PaginationResponse<ProdutoDto>>  {
@@ -54,13 +56,13 @@ export class ProdutoRequestService {
     .set('sort', sort)
     .set('page', page.toString())
     .set('size', size.toString());
-    return this.http.get<PaginationResponse<ProdutoDto>>('/produto/autosuggest', { params: params2 });
+    return this.http.get<PaginationResponse<ProdutoDto>>(`/adm/${this.URIDESTINO}/autosuggest`, { params: params2 });
   }
 
   findById(idProd: string): Observable<ProdutoDto> {
-    return this.http.get<ProdutoDto>(`/produto/${idProd}`);
+    return this.http.get<ProdutoDto>(`/${this.URIDESTINO}/${idProd}`);
   }
   delete(index: number) {
-    return this.http.delete(`/produto/${index}`);
+    return this.http.delete(`/adm/${this.URIDESTINO}/${index}`);
   }
 }

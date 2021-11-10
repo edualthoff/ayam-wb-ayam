@@ -50,6 +50,6 @@ export class CaracteristicaRequestService {
   }
   /** deletar por id */
   delete(index: number) {
-    return this.http.delete(`/${this.URIDESTINO}/${index}`);
+    return this.http.delete(`/adm/${this.URIDESTINO}/${index}`);
   }
 }

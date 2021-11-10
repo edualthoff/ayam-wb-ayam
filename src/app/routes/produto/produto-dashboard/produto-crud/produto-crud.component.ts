@@ -30,6 +30,7 @@ export class ProdutoCrudComponent implements OnInit {
 
   ngOnInit(): void {
     this.mountForm();
+    this.reactiveForm.get(['status']).setValue(false);
     this.mountlistCaracteristica('elemento');
     this.mountlistCaracteristica('vibracao');
     if (this.activedRoute.snapshot.params['id'] !== undefined) {
@@ -46,8 +47,11 @@ export class ProdutoCrudComponent implements OnInit {
             contentDescricao: result.descricao,
             selectTipoVibracao: result.listCaracteristicaProduto.filter(x => x.tipo.toLowerCase() === 'vibracao'),
             selectTipoElemento: result.listCaracteristicaProduto.filter(x => x.tipo.toLowerCase() === 'elemento'),
+            status: result.status,
           };
           this.reactiveForm.setValue(fr);
+          this.reactiveForm.get(['status']).setValue(result.status);
+
         });
     }
   }
@@ -60,7 +64,8 @@ export class ProdutoCrudComponent implements OnInit {
       contentDescricao: ['', Validators.required],
       uploadFile: ['', Validators.required],
       selectTipoVibracao: ['', Validators.required],
-      selectTipoElemento: ['', Validators.required]
+      selectTipoElemento: ['', Validators.required],
+      status: ['', Validators.required]
     });
   }
 
@@ -79,6 +84,7 @@ export class ProdutoCrudComponent implements OnInit {
     produtoDto.nome = this.reactiveForm.get(['nome']).value;
     produtoDto.nomeCurto = this.reactiveForm.get(['nomeCurto']).value;
     produtoDto.descricao = this.reactiveForm.get(['contentDescricao']).value;
+    produtoDto.status = this.reactiveForm.get(['status']).value;
     const filesNews: File[] = this.reactiveForm.get(['uploadFile']).value;
 
     produtoDto.listCaracteristicaProduto =
