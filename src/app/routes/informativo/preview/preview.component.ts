@@ -1,4 +1,3 @@
-import { FileRequestService } from './../../../core/services/https/file-upload/file-request.service';
 import { InformativoRequestService } from './../../../core/services/https/informativo/informativo-request.service';
 import { LoadSpinnerService } from './../../../shared/components/load-spinner/load-spinner.service';
 import { AdItemPreviewComponent } from './../../../shared/components/dialog/preview-post/ad-item.component';
