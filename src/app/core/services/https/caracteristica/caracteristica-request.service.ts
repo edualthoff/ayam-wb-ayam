@@ -42,7 +42,7 @@ export class CaracteristicaRequestService {
     .set('page', page.toString())
     .set('size', size.toString())
     .set('status', status);
-    return this.http.get<PaginationResponse<CaracteristicaProdutoDto>>(`/adm//${this.URIDESTINO}/autosuggest`, { params: params2 });
+    return this.http.get<PaginationResponse<CaracteristicaProdutoDto>>(`/adm/${this.URIDESTINO}/autosuggest`, { params: params2 });
   }
   /** Buscar por id */
   findById(idCaract: string): Observable<CaracteristicaProdutoDto> {
